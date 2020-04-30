@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Test</title>
+</head>
+<body>
+  User: <input type="text" id="userText" value="">
+  <p></p>
+  Password: <input type="text" id="passwordText" value="">
+  <br></br>
+  <br></br>
+  Esp list
+  <br></br>
+  Esp-01: <button onclick="turnon_01();">Turn On</button>
+  <button onclick="turnoff_01();">Turn Off</button>
+  <br></br>
+  Esp-02: <button onclick="turnon_02();">Turn On</button>
+  <button onclick="turnoff_02();">Turn Off</button>
+  <br></br>
+  Esp-03: <button onclick="turnon_03();">Turn On</button>
+  <button onclick="turnoff_03();">Turn Off</button>
+
+  
+  <script>
+    var xmlhttp = new XMLHttpRequest(); 
+    var onUrl = "http://192.168.1.58:4000/api/esp/turnon";
+    var offUrl = "http://192.168.1.58:4000/api/esp/turnoff";
+    
+    xmlhttp.onload = () => {
+      if (xmlhttp.status >= 200 && xmlhttp.status < 300) {
+        const response = JSON.parse(xmlhttp.responseText);
+        console.log(response);
+        }
+    };
+    
+    function turnon_01() {
+      var user_credential = document.getElementById("userText").value;
+      var password_credential = document.getElementById("passwordText").value;
+      xmlhttp.open("POST", onUrl);
+      xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xmlhttp.send(JSON.stringify({ "user": user_credential, "password": password_credential, "espID": "secretID", "instruction": "Turn_On" }));
+      
+    };
+
+    function turnoff_01() {
+      var user = document.getElementById("userText").value;
+      var password = document.getElementById("passwordText").value;
+      xmlhttp.open("POST", offUrl);
+      xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xmlhttp.send(JSON.stringify({ "user": user, "password": password, "espID": "secretID", "instruction": "Turn_Off" }));
+    };
+
+  </script>
+</body>
+</html>
+
+

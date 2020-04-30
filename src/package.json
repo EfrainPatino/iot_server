@@ -1,0 +1,29 @@
+{
+  "name": "iot_server",
+  "version": "0.1.0",
+  "description": "IoT Server for Esp clients",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EfrainPatino/iot_server.git"
+  },
+  "author": "EfrainPatino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EfrainPatino/iot_server/issues"
+  },
+  "homepage": "https://github.com/EfrainPatino/iot_server#readme"
+}
