@@ -1,44 +1,38 @@
-var espState = false;
+const {DbWrite} = require('../middlewares/DB') 
+const fs = require('fs');
+var state = '';
 
 const TurnOn = (req, res) => {
-  const {espID} = req.body;
-  console.log(req.body);
-  if ( espID == 'secretID') {
-    try {
-      res.send({status: 'OK', data: 'on', message: 'TurnOn'});
-      espState = true;
-      console.log(espState);
-    } catch (e) {
-      res.status(500).send({status: 'ERROR SENDING DATA', message: e.message});
-    }
-  } else {
-    res.status(500).send({status: 'ERROR', message: 'Invalid secretID'});
+  state = req.body
+  console.log(state);
+  try {
+    res.send({status: 'OK', data: 'on', message: 'TurnOn'});
+    DbWrite(state)
+  } catch (e) {
+    console.log(e)
+    res.status(500).send({status: 'ERROR SENDING DATA', message: e.message});
   }
 };
 
 const TurnOff = (req, res) => {
-  const {espID} = req.body;
-  console.log(req.body);
-  if ( espID == 'secretID') {
-    try {
-      res.send({status: 'OK', data: 'off', message: 'TurnOff'});
-      espState = false;
-      console.log(espState);
-    } catch (e) {
-      console.log(e)
-      res.status(500).send({status: 'ERROR SENDING DATA', message: e.message});
-    }
-  } else {
-    res.status(500).send({status: 'ERROR', message: 'Invalid secretID'});
+  state = req.body
+  console.log(state);
+  try {
+    res.send({status: 'OK', data: 'off', message: 'TurnOff'});
+    DbWrite(state)
+  } catch (e) {
+    console.log(e)
+    res.status(500).send({status: 'ERROR SENDING DATA', message: e.message});
   }
 };
 
 const Refresh = (req,res) => {
-  const {espID, state} = req.body;
-  res.send({status: 'OK', esp_01: espState, esp_02: 'true', esp_03: 'true'});
-  console.log(espState);
+  espID = req.body.espID
+  let rawdata = fs.readFileSync(`${espID}.json`);
+  let status = JSON.parse(rawdata);
+  res.send(status);
+  console.log(req.body)
 }
-
 
 module.exports = {
   TurnOn,

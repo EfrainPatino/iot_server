@@ -11,20 +11,20 @@
   <br></br>
   Esp list
   <br></br>
-  Esp-01: <button onclick="turnon_01();">Turn On</button>
-  <button onclick="turnoff_01();">Turn Off</button>
+  Esp-01: <button onclick="turnon_1();">Turn On</button>
+  <button onclick="turnoff_1();">Turn Off</button>
   <br></br>
-  Esp-02: <button onclick="turnon_02();">Turn On</button>
-  <button onclick="turnoff_02();">Turn Off</button>
+  Esp-02: <button onclick="turnon_2();">Turn On</button>
+  <button onclick="turnoff_2();">Turn Off</button>
   <br></br>
-  Esp-03: <button onclick="turnon_03();">Turn On</button>
-  <button onclick="turnoff_03();">Turn Off</button>
+  Esp-03: <button onclick="turnon_3();">Turn On</button>
+  <button onclick="turnoff_3();">Turn Off</button>
 
   
   <script>
     var xmlhttp = new XMLHttpRequest(); 
-    var onUrl = "http://192.168.1.58:4000/api/esp/turnon";
-    var offUrl = "http://192.168.1.58:4000/api/esp/turnoff";
+    var onUrl = "http://192.168.1.58:5000/api/esp/turnon";
+    var offUrl = "http://192.168.1.58:5000/api/esp/turnoff";
     
     xmlhttp.onload = () => {
       if (xmlhttp.status >= 200 && xmlhttp.status < 300) {
@@ -33,21 +33,55 @@
         }
     };
     
-    function turnon_01() {
+    function turnon_1() {
       var user_credential = document.getElementById("userText").value;
       var password_credential = document.getElementById("passwordText").value;
       xmlhttp.open("POST", onUrl);
       xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-      xmlhttp.send(JSON.stringify({ "user": user_credential, "password": password_credential, "espID": "secretID", "instruction": "Turn_On" }));
+      xmlhttp.send(JSON.stringify({ "status": "ok", "user": user_credential, "password": password_credential, "espID": "secretID_1", "state": true }));
       
     };
 
-    function turnoff_01() {
+    function turnoff_1() {
       var user = document.getElementById("userText").value;
       var password = document.getElementById("passwordText").value;
       xmlhttp.open("POST", offUrl);
       xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-      xmlhttp.send(JSON.stringify({ "user": user, "password": password, "espID": "secretID", "instruction": "Turn_Off" }));
+      xmlhttp.send(JSON.stringify({ "status": "ok", "user": user, "password": password, "espID": "secretID_1", "state": false }));
+    };
+
+    function turnon_2() {
+      var user_credential = document.getElementById("userText").value;
+      var password_credential = document.getElementById("passwordText").value;
+      xmlhttp.open("POST", onUrl);
+      xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xmlhttp.send(JSON.stringify({ "status": "ok", "user": user_credential, "password": password_credential, "espID": "secretID_2", "state": true }));
+      
+    };
+
+    function turnoff_2() {
+      var user = document.getElementById("userText").value;
+      var password = document.getElementById("passwordText").value;
+      xmlhttp.open("POST", offUrl);
+      xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xmlhttp.send(JSON.stringify({ "status": "ok", "user": user, "password": password, "espID": "secretID_2", "state": false }));
+    };
+
+    function turnon_3() {
+      var user_credential = document.getElementById("userText").value;
+      var password_credential = document.getElementById("passwordText").value;
+      xmlhttp.open("POST", onUrl);
+      xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xmlhttp.send(JSON.stringify({ "status": "ok", "user": user_credential, "password": password_credential, "espID": "secretID_3", "state": true }));
+      
+    };
+
+    function turnoff_3() {
+      var user = document.getElementById("userText").value;
+      var password = document.getElementById("passwordText").value;
+      xmlhttp.open("POST", offUrl);
+      xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xmlhttp.send(JSON.stringify({ "status": "ok", "user": user, "password": password, "espID": "secretID_3", "state": false }));
     };
 
   </script>
