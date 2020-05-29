@@ -3,7 +3,7 @@ var fs = require('fs')
 const DbWrite = (inputStatus) => {
   var status = JSON.stringify(inputStatus);
   
-  fs.writeFile(`${inputStatus.espID}.json`, status, 'utf8', function (err) {
+  fs.writeFile(`../data/${inputStatus.espID}.json`, status, 'utf8', function (err) {
       if (err) {
           console.log("An error occured while writing JSON Object to File.");
           return console.log(err);

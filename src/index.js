@@ -28,7 +28,7 @@ app.listen(PORT, () => {
 });
 
 app.get('/', function(req, res) { //Ruta que envia el HTML
-    res.sendFile(path.join(__dirname + '/index.html'));    
+    res.sendFile(path.join(__dirname + '/Public/index.html'));    
 });
 
 
